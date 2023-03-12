@@ -1,38 +1,42 @@
-import * as React from "react"
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import { ChakraProvider, Box, theme, Flex, useDisclosure, Show } from "@chakra-ui/react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { DrawerMenu } from "./components/DrawerMenu";
+import { SideMenu } from "./components/SideMenu";
+import { TopHeader } from "./components/TopHeader";
+import { Page1 } from "./routes/Page1";
+import { Page2 } from "./routes/Page2";
+import { Page3 } from "./routes/Page3";
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+export const App = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  return (
+    <ChakraProvider theme={theme}>
+
+      <Box h={{ base: "80px", lg: "100px" }}>
+        <TopHeader onOpen={onOpen}/>
+      </Box>
+
+      <Box w="100vw" h={{ base: "calc(100vh - 80px)", lg: "calc(100vh - 100px)" }}>
+        <Flex w="100%" h="100%">
+          <BrowserRouter>
+            <DrawerMenu isOpen={isOpen} onClose={onClose} />
+
+            <Show above="lg">
+              <SideMenu width="20vw" />
+            </Show>
+            
+            <Box w={{ base: "100vw", lg: "80vw" }}>
+              <Routes>
+                <Route path="/" element={<Page1/>} />
+                <Route path="/page2" element={<Page2/>} />
+                <Route path="/page3" element={<Page3/>} />
+              </Routes>
+            </Box>
+          </BrowserRouter>
+        </Flex>
+      </Box>
+
+    </ChakraProvider>
+  );
+}
