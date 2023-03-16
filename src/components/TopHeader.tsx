@@ -6,8 +6,8 @@ type Props = {
 }
 
 export const TopHeader = (props: Props) => (
-    <Flex 
-        as="header" 
+    <Flex
+        as="header"
         top={0}
         width="100%"
         height="100%"
@@ -16,14 +16,15 @@ export const TopHeader = (props: Props) => (
         align="center"
         px={{ base: 2, lg: 4 }}
     >
+        {/* large以上で表示されるハンバーガーボタン */}
         <Hide above="lg">
-            <Button 
-                variant="ghost" 
+            <Button
+                variant="ghost"
                 fontSize={{ base: "xl", lg: "3xl" }}
                 boxSize={{ base: 8, lg: 16 }}
                 onClick={() => props.onOpen()}
             >
-            <HamburgerIcon />
+                <HamburgerIcon />
             </Button>
         </Hide>
         <Box

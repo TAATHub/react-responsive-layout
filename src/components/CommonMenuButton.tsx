@@ -7,7 +7,8 @@ type Props = {
     onClick: () => void;
 }
 
-export const CommonButton = (props: Props) => (
+// 共通のメニューボタン
+export const CommonMenuButton = (props: Props) => (
     <Button
         w="100%"
         h="auto"
@@ -16,14 +17,19 @@ export const CommonButton = (props: Props) => (
         variant="ghost"
         onClick={props.onClick}
     >
-        <Spacer/>
-        <Icon 
+        <Spacer />
+
+        {/* アイコン */}
+        <Icon
             as={props.iconType}
             w={7}
             h={7}
             mr={2}
         />
+
+        {/* ボタンタイトル */}
         {props.title}
-        <Spacer/>
+
+        <Spacer />
     </Button>
 )

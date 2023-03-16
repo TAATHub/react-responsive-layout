@@ -1,7 +1,6 @@
-import { Box, Button, Icon, Spacer } from "@chakra-ui/react";
-import { MdMessage, MdAccountBox } from "react-icons/md";
+import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { CommonButton } from "./CommonButton";
+import { CommonMenuButton } from "./CommonMenuButton";
 import { MenuItems } from "../MenuItems";
 
 type Props = {
@@ -9,6 +8,7 @@ type Props = {
 }
 
 export const SideMenu = (props: Props) => {
+    // React Routerのページ遷移フック
     const navigate = useNavigate();
 
     return (
@@ -19,7 +19,8 @@ export const SideMenu = (props: Props) => {
         >
             {MenuItems.map((item) => (
                 <Box>
-                    <CommonButton 
+                    {/* 共通のメニューボタンコンポーネント */}
+                    <CommonMenuButton
                         iconType={item.icon}
                         title={item.name}
                         onClick={() => navigate(item.path)}
