@@ -30,7 +30,7 @@ export const DrawerMenu = (props: Props) => {
                 <DrawerBody px={0} py={6}>
                     <Flex direction="column">
                         {MenuItems.map((item) => (
-                            <Box>
+                            <Box key={item.name}>
                                 {/* 共通のメニューボタンコンポーネント */}
                                 <CommonMenuButton
                                     iconType={item.icon}

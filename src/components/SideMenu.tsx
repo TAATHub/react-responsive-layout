@@ -18,7 +18,7 @@ export const SideMenu = (props: Props) => {
             bg="gray.100"
         >
             {MenuItems.map((item) => (
-                <Box>
+                <Box key={item.name}>
                     {/* 共通のメニューボタンコンポーネント */}
                     <CommonMenuButton
                         iconType={item.icon}
